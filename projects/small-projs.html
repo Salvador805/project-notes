@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Small Projects</title>
+	<link rel="stylesheet" href="../styles.css">
+</head>
+    
+<body>
+    <header>
+    	<h1>ATX Bench Power Supply</h1>
+    </header>
+    
+    <section style="padding:2rem;">
+        <h2>Overview</h2>
+        <p>
+            Convert an ATX PSU into a multi-rail bench supply 
+            with fused outputs. Plus I gave it variable control 
+            via a multi-turn potentiometer
+        </p>
+
+        <h2>Features</h2>
+        <ul>
+            <li>12V @ 54A rail</li>
+            <li>5V @ 35A rail</li>
+            <li>3.3V @ 20A rail</li>
+            <li>Custom fuse sizing</li>
+        </ul>
+    </section>  
+
+    <header>
+    	<h1>Introduction to FPGAs</h1>
+    </header>
+    <section>
+        <figure>
+            <img src="../images/small_projs/workflow.png" alt="General FPGA Workflow">
+            <figcaption>General FPGA Workflow</figcaption>
+        </figure>
+        <figure>
+            <img src="../images/small_projs/bdf.png" 
+                 alt="Block Design File">
+            <figcaption>Block Design File</figcaption>
+        </figure>
+        <h2>Overview</h2>
+            <p>
+            I used an Altera Cyclone IV that was embedded
+            in the DE0-Nano development board, created by terasIC. 
+            I followed a tutorial provided by them in their user manual.
+            Fortunate for us, they provide multiple manuals. There are
+            three: the main DE0 Nano User Manual, "My First FPGA for Altera
+            DE0-Nano Board", and "My First Nios II for Altera DE-Nano Board".
+            They can all be found in the DE0-Nano CD-ROM in the 
+            <a href="https://www.terasic.com.tw/cgi-bin/page/archive.pl?Language=English&CategoryNo=139&No=593&PartNo=4#contents" target =_blank>
+            terasIC page.
+            </a>
+            The tutorial was a simple blink project which was on the 
+            second manual in the list. The blink project counts up to 32 in
+            binary using the LEDs on board. There are 4 LEDs which each have
+            two states, creating a total of 2^4 = 32 possiblities.
+            </p>
+        <h2>Design Structure</h2>
+            <p>
+            My PLL megafunction grabs the 50MHz on board oscillator signal 
+            and uses a ratio of 1/10 to bring it to 5MHz. Which was then
+            used as an input for my 32 bit simple counter. The 32 bit counter 
+            increments each positive clock edge. Then a multiplexer uses 26..23
+            on one line and the other 24..21, from which a select line is 
+            connected to a button to control the speed of which the LEDs count
+            to 32. The output of the multiplexer goes to four LEDs.
+            </p>
+        <h2>Process</h2>
+            <p>
+            I first started with setting up Quartus 
+            Prime which was confusing at first because the software in the manual
+            was pretty old, so I had to change a few things. I then learned how
+            to set up a Block Design File(.bdf) which is where my design will live.
+            I then created a simple 32 bit simple counter using Verilog HDL from
+            which I created Symbol file. After which I created a custom PLL 
+            megafunction using the built in wizard creation tool. I also used
+            the same wizard to create a custom multiplexer with 2 data lines of 
+            4 bits each and one 4 bit output. I then used the pin planner and 
+            the schematic to see which pins of which bank will I be using for
+            the LEDs, CLOCK signal, and button. After assigning pins, I took 
+            into account timing setting by creating a basic Synopsys Design
+            Constraints File(.sdc) which gets used during compilation. One problem
+            I did face here is the fact that my board clock signal was unconstrained,
+            so I had to add in [get_ports {CLOCK_50}] to my sdc so I can attach
+            the base clock to a real port. After this step,
+            I compiled the design, programmed it via USB Blaster, and ta-da it worked.
+            </p>
+        <p>
+            Skills Worked: Quartus Prime, Basic FPGA Circuit Design,
+            Verilog HDL
+        </p>
+        <p>
+            References: 
+            <a href="../images/small_projs/simple_counter.png" class="card">
+                simple_counter.v
+            </a>, 
+            <a href="../images/small_projs/sdc.png" class="card">
+                led_blink.sdc
+            </a>,
+            <a href="../images/small_projs/pin_planner.png" class="card">
+                pin_planner
+            </a>,
+            <a href="https://chatgpt.com/share/699a091d-f03c-8005-8394-b35517a125fe" target="_blank">
+                My ChatGPT Tutoring Session
+            </a>
+        </p>
+    </section>
+
+    <section>
+        <a href="../index.html" class="button">← Back to Projects</a>
+    </section>
+</body>
+    
+</html>
+    

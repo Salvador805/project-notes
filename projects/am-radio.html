@@ -1,0 +1,152 @@
+<!-- Add Pictures from notebook-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>AM Radio</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>AM Radio</h1>
+    </header>
+    
+    <section style="padding:2rem;">
+
+        <figure>
+            <img src="/images/am-radio/transmission.png" alt="Transmission Circuit">
+            <figcaption>Transmission Circuit</figcaption>
+        </figure>
+        <figure>
+            <img src="/images/am-radio/receiving.png" class="half-size" alt="Receiving Circuit">
+            <figcaption>Receiving Circuit</figcaption>
+        </figure>
+
+        <h2>Overview</h2>
+        <p>
+            This was a class project, in which we
+            tried creating two am radios. One in which we use a 555
+            timer to create a periodic square wave as a our carrier wave
+            and a sine wave from a function generator as our message wave. The
+            other am radio would be using another function generator
+            for our carrier wave instead of the 555 timer. The 
+            modulated wave would be transmitted via an LED and on the 
+            receiving end it would use a phototransistor to pick up the 
+            wave. We used a jFET as our modulating device which after 
+            transmitting we would be able to tune into the frequency by using an
+            LC resonator, then we would demodulate it by using a peak
+            detector. The circuit can be seen above. By creating this circuit
+            on a breadboard I was only able to get to transmitting it to 
+            the LED, but the demodulation did not end up working due to 
+            lack of time in class. I continued this project on LTspice and
+            finished it on there. I had to do multiple changes to
+            the breadboard circuit I mentioned above in Figure 1 and 2
+            to make it successful.
+
+            <br><br>
+            Note: The LTspice circuit was built only around the 555 timer as my carrier,
+            I didn't recreate my breadboard circuit in which my carrier was another sine
+            wave.
+        </p>
+        <h2>Materials</h2>
+        <p>
+            <li>KA358 as my dual op amp ic</li>
+            <li>BPV11 as my photo-transistor</li>
+            <li>J112 as my jFET</li>
+            <li>LM555 as my timer ic</li>
+            <li>Breadboard</li>
+            <li>Wave Function Generator</li>
+            <li>Oscilloscope</li>
+            <li>LED</li>
+            <li>Various Resistors and Capacitors</li>
+
+        </p>
+        <h2>One Challenge</h2>
+        <p>
+            Relearning the basics was one of the hardest things I had to 
+            do in this project. I thought I knew what I was doing 
+            during my breadboard circuit building process, but turns out
+            I didn't actually know. I was following a general schematic
+            in which I thought I knew what each component did. I realized
+            I actually didn't know the fundamentals enough when I tried
+            transitioning into my LTspice circuit using the same circuit
+            from my breadboard. As I was building my way up to the circuit
+            on my breadboard I had the opportunity to mess around with
+            resistor values, capacitor values to see if my wave would change
+            how I expected it. Building from the ground up helped me understand
+            more importantly what each component did rather than just paying
+            attention to a single component like the jFET. This
+            was definitely a big growing experience. I learned that 
+            understanding the fundamentals of a project is something you
+            have to get done at the beginning of a project. I have attached my 
+            AM Radio notebook for my breadboard circuit, notes I took during 
+            the LTspice process, and my AM Radio overleaf write-up.
+        </p>
+        <figure>
+            <img src="/images/am-radio/lt-spice-tx.png" class="half-size" alt="LTspice Transmission">
+            <img src="/images/am-radio/lt-spice-rx.png" class="half-size" alt="LTspice Receiving">
+            <figcaption>
+                LTspice Circuit(for complete circuit go to references)
+            </figcaption>
+        </figure>
+
+        <figure>
+            <img src="/images/am-radio/finalplot.png" class="half-size" alt="LTspice Receiving">
+            <figcaption>
+                Final Demodulated Wave
+            </figcaption>
+        </figure>
+
+        <h2>Some Findings</h2>
+        <p>
+            As you know the schematic depicted in Figure 1 and 2 was the one I 
+            followed during my breadboard circuit. In this section we can
+            see the actual LTspice circuit. One big change I had to do
+            was add in a resistor in series with op-amps because LTspice
+            treats this op-amps as ideal. This meaning that they had
+            a special characteristic where they provide infinite current.
+            It is described in more detail in the LTspice circuit attached.
+            Another big finding was the fact the frequencies I chose which were 
+            90Hz for my message, and 969Hz for my carrier frequency. Using these
+            two values actually made a somewhat big impact on my spice model.
+            I ended up learning that using LC resonator as my tuner
+            would best fit instances where my carrier frequency is in the
+            kHz and MHz range. In my circuit it proved no benefit, so I took it out.
+            Another problem was the fact that because I chose this frequencies,
+            I wasn't able to completely cutoff the high frequencies at the end(
+            shown on the figure provided). I even tried using a two pole RC filter 
+            to increase my rolloff rate.It proved beneficial but it just wasn't 
+            enough. The fix for this would be to choose a better carrier/message
+            frequency combination such that we aren't at the minimum requirement 
+            of having the carrier frequency being at least 10 times that of the
+            message frequency. This would create a big enough separation between
+            the two frequencies such that I can cleanly cutoff the high frequency
+            noise. At the end we were able to get a somewhat clean and 
+            understandable output.
+  
+        </p>
+        <h2>References</h2>
+        <p>
+            <a href="https://docs.google.com/document/d/1detB9465P1y6oNv-RSIIwe0GBCjZ4g8BYv_C_DTVq0s/edit?usp=sharing" target="_blank">
+                Breadboard AM Radio Notebook
+            </a>,
+            <a href="/projects/bread-am-radio.pdf" class="card">
+                Breadboard AM Radio Overleaf Write-Up
+            </a>,
+            <a href="" class="card">
+                LTspice Notes(ADD IN LINK TO THIS)
+            </a>,
+            <a href="/images/am-radio/lt-spice.pdf" class="card">
+                LTspice Circuit with Embedded Notes
+            </a>,
+            <a href="/images/am-radio/lt-spice-plots.png" class="card">
+                LTspice Plots
+            </a>.
+        </p>
+    </section>
+    <section>
+        <a href="../index.html" class="button">← Back to Projects</a>
+    </section>
+</body>
+</html>
