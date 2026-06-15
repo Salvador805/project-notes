@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Salvador Rodriguez | Projects</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<script>
+    function copyToClipboard(elementId, button) {
+        const text = document.getElementById(elementId).innerText;
+
+        navigator.clipboard.writeText(originalText).then(() => {
+            const original = button.innerText;
+            button.innerText = "Copied!";
+            setTimeout(() => {
+                button.innerText = original;
+            }, 1200);
+        }).catch(err => {
+            console.error("Copy failed:", err)
+        });
+    }
+</script>
+
+<body>
+
+<header>
+    <h1>Salvador Rodriguez</h1>
+    <p>Electro-Mechanical Projects & Engineering Work</p>
+</header>
+
+<nav>
+    <a href="#projects">Projects</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<section id="projects">
+    <h2>Projects</h2>
+
+    <div class="project">
+ 
+        <a href="projects/ray-tracing.html" class="card">
+        	<h3>Ray Tracing on Raspberry Pi</h3>
+        </a>
+            <p>
+                Built a ray tracer with one basic shapes, a sphere
+                and two basic materials(one metal and the other using
+                lambertian diffusion). Tried
+                adding a triangle as well and managed to get an 
+                output but there was some technical difficulties
+                where I couldn't bring it in the frame, you would
+                only be able to see it reflecting from the metal spheres
+                as shown. The code was written in python and inspired
+                from a book with code written in C.
+                <br><br>
+                Skills Worked: Python, Object Oriented Programming, Read C,
+                Raspberry Pi OS, SSH Connectivity
+            </p>
+        
+        <a href="projects/am-radio.html" class="card">
+        	<h3>AM Radio</h3>
+        </a>
+            <p>
+                Started this project around May 2024. Tried building 
+                an AM Radio on a breadboard using a wave function 
+                generator for the message wave, a 555 timer for 
+                the carrier wave, and an oscilloscope to 
+                troubleshoot. I also tried using a wave function 
+                generator for both carrier and message
+                wave. I considered this a fail because it was part
+                of a course and I never got to finish it. I revisited
+                this project around January of 2026, because I 
+                resisted not knowing where I messed up. I took this
+                opportunity to learn LTspice. I ended up replicating the
+                circuit with a 555 timer for carrier and wave function
+                generator for the message.
+         		<br><br>
+                Skills Worked: Amplitude Modulation, Breadboard
+                Prototyping, Oscilloscope, Analog Circuit Design,
+                LTspice, Spice Directives, Troubleshooting
+
+            </p>        
+
+        <a href="projects/fit-watch.html" class="card">
+        	<h3>Fitness SmartWatch</h3>
+        </a>
+            <p>
+                In Progress...
+                <br><br>
+                Skills Worked: Multi-Layer PCB Design, 
+                KiCAD/Altium, RF Design, Breadboard Prototyping, 
+                In-Depth MCU research, Communication Protocols(I2C, SPI, BLE), 
+                Zephyr RTOS, nRF Connect SDK, Power Management
+            </p>
+
+        <a href="projects/rescue-drone.html" class="card">
+        	<h3>Rescue Drone</h3>
+    	</a>
+            <p>
+                The point of this drone is to locate missing people
+                in the ocean via infrared imaging. There might be
+                more methods we can incorporate, but this is the
+                main idea right now. We are in the process of
+                doing more research and learning about it. 
+
+                P.S: My partner is Jose Batalla, a high 
+                school friend of mine. The project 
+                was chosen with the idea of working on
+                teamworking/collaboration skills.
+                <br><br>
+                Skills Worked: Teamwork, Collaboration,
+                Flight Controllers, Electronic Speed Conrollers(ESCs),
+                PCB Design, CAD, ....
+            </p>
+        
+        <a href="projects/small-projs.html" class="card">
+        	<h3>Small Projects</h3>
+        </a>
+            <p>
+                pretty much what the heading says. Small projects where
+                I barely dipped my feet in, for the sake purpose
+                of trying it. There are also projects where little 
+                effort is required, no extensive research.
+            </p>
+    </div>
+
+</section>
+
+<section id="about">
+    <h2>About Me</h2>
+    <p>
+        Hello, my name is Salvador Rodriguez. I am a UCSB Alumni with a B.S in
+        Physics and a minor in Statistics. This is my project
+        dump, I keep a summary of my projects and the notes that I took
+        that led me there. This is not only a sort of portfolio but a journal
+        of how I broke something, how I got stuck, and how I got unstuck. My focus is 
+        on electronics, embedded systems, and some mechanical integration. Trying to 
+        teach myself all this to close my knowledge gaps and get closer 
+        to becoming a competent engineer. Not only am I working on my technical
+        skills, but I am also working on my soft skills. Some of them 
+        being my communication skills, my quick thinking, and 
+        my decision-making skills. 
+    </p>
+</section>
+
+<section id="contact">
+    <h2>Contact</h2>
+    <p>
+        Email: 
+        <span id="email-text">
+        <script>
+        const user = "sr958113";
+        const domain = "gmail.com";
+        document.write(
+        	`${user}@${domain}`
+        );
+        </script>
+        </span>
+        <button class="copy-btn" onclick="copyToClipboard('email-text', this)">
+            Copy
+        </button>
+
+        <br>
+        LinkedIn: 
+        <a href="https://www.linkedin.com/in/salprodriguez" target="_blank">
+        www.linkedin.com/in/salprodriguez
+        </a>
+    </p>
+</section>
+
+<footer>© 2026 Salvador Rodriguez</footer>
+
+
+</body>
+</html>
